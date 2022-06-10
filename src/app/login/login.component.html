@@ -1,0 +1,67 @@
+<form class="form" [formGroup]="login" (ngSubmit)="loginSubmit()">
+    <body class="text-center">
+    <main class="form-signin w-100 m-auto">
+      
+        <img class="mb-4" src="../assets/mail.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    
+        <div class="form-floating">
+          <input type="email" class="form-control" id="Email" placeholder="name@example.com" formControlName="email">
+          <label for="email">Email address</label>
+
+          <div class="form-text text-danger" *ngIf="Email.errors?.['required'] && (Email.dirty || Email.touched)">Email is required</div>
+          <div class="form-text text-danger" *ngIf="Email.errors?.['email'] && (Email.dirty || Email.touched)">Email is Invalid</div>
+
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="Password" placeholder="Password" formControlName="passwd">
+          <label for="Password">Password</label>
+          
+          <div class="form-text text-danger" *ngIf="Password.errors?.['required'] && (Password.dirty || Password.touched)">Password is required</div>
+          <div class="form-text text-danger" *ngIf="Password.errors?.['minlength'] && (Password.dirty || Password.touched)">password's length should be atleast 8 characters </div>
+          <div class="form-text text-danger" *ngIf="Password.errors?.['maxlength'] && (Password.dirty || Password.touched)">password's length should be atmax 16 characters </div>
+
+        </div>
+    
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary mt-2" type="submit" [disabled]="login.invalid">Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary mt-2" type="button" data-bs-toggle="modal" data-bs-target="#ForgotPassword">Forgot Password</button>
+        <!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  
+  
+        
+    </main>
+    </body>
+</form>
+<form [formGroup]="forgotCred" (ngSubmit)="forgotRequest()">
+    <div class="modal fade" id="ForgotPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+
+      </div>
+      <div class="modal-body">
+          <div class="form-floating">
+              <input type="email" class="form-control" id="mailId" placeholder="name@example.com" formControlName="email">
+              <label for="mailId">Email address</label>
+              <input type="password" class="form-control" id="passwrd" placeholder="*******" formControlName="passwd" *ngIf="enterThePassword">
+              <!-- <label for="passwrd" *ngIf="enterThePassword">Password</label> -->
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">Close</button>
+        <button class="btn btn-primary mt-2" type="submit" *ngIf="enableCheckAccount">Check Account</button>
+        <button class="btn btn-primary mt-2" (click)="ResetPassword()" *ngIf="enableButton" >Set Password</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>

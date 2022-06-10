@@ -1,0 +1,115 @@
+<!-- Image and text -->
+<nav class="navbar navbar-dark bg-primary" style="background-color: #e3f2fd;">
+    <a class="navbar-brand mx-2" href="#">
+      <img src="../assets/icons8-hentai-discord-128.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+      Guvi Task
+    </a>
+  <button type="button" class="btn btn-outline-light btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <span class="sr-only">Register</span>
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" >Register</h5>
+          <!-- <h5 class="modal-title" id="exampleModalLabel" >User updation</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                    
+            <form [formGroup]="register" (ngSubmit)="registerForm()">
+                <div class="mb-3">
+                    <label for="FirstName" class="form-label">First Name</label>
+                    <input required="true" type="text" class="form-control" formControlName="FirstName" id="FirstName" aria-describedby="emailHelp">
+                    
+                    <div class="form-text text-danger" *ngIf="firstName.errors?.['required'] &&(firstName.touched || firstName.dirty)">First Name is required</div>
+                    <div class="form-text text-danger" *ngIf="!firstName.errors?.['pattern'] && firstName.errors?.['minlength'] &&(firstName.touched || firstName.dirty)">Minimum Length should be 2</div>
+                    <div class="form-text text-danger" *ngIf="firstName.errors?.['pattern'] &&(firstName.touched || firstName.dirty)">Name should Start with an Alphabet</div>
+                    
+                  </div>
+                  <div class="mb-3">
+                    <label for="LastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" formControlName="LastName" id="LastName" aria-describedby="emailHelp">
+                    
+                    <div class="form-text text-danger" *ngIf="lastName.errors?.['required'] &&(lastName.touched || lastName.dirty)">Last Name is required</div>
+                    <div class="form-text text-danger" *ngIf="!lastName.errors?.['pattern'] && lastName.errors?.['minlength'] &&(lastName.touched || lastName.dirty)">Minimum Length should be 2</div>
+                    <div class="form-text text-danger" *ngIf="lastName.errors?.['pattern'] &&(lastName.touched || lastName.dirty)">Last Name should Start with an Alphabet</div>
+                    
+                  </div>
+                  <div class="mb-3">
+                    <label for="Email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" formControlName="Email" id="Email" aria-describedby="emailHelp">
+                    
+                    <div class="form-text text-danger" *ngIf="email.errors?.['required'] &&(email.touched || email.dirty)">Email is required</div>
+                    <div class="form-text text-danger" *ngIf="email.errors?.['email'] &&(email.touched || email.dirty)">Invalid Email</div>
+                    
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="State" class="form-label">State</label>
+                    <input type="text" class="form-control" formControlName="State" id="State" aria-describedby="emailHelp">
+                    
+                    <div class="form-text text-danger" *ngIf="state.errors?.['required'] &&(state.touched || state.dirty)">State is required</div>
+                    <div class="form-text text-danger" *ngIf="!state.errors?.['pattern'] && state.errors?.['minlength'] &&(state.touched || state.dirty)">Minimum Length should be 2</div>
+                    <div class="form-text text-danger" *ngIf="state.errors?.['pattern'] &&(state.touched || state.dirty)">should Start with an Alphabet</div>
+                    
+                    
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="City" class="form-label">City</label>
+                    <input type="text" class="form-control" formControlName="City" id="City" aria-describedby="emailHelp">
+                    
+                    <div class="form-text text-danger" *ngIf="city.errors?.['required'] &&(city.touched || city.dirty)">City is required</div>
+                    <div class="form-text text-danger" *ngIf="!city.errors?.['pattern'] && city.errors?.['minlength'] &&(city.touched || city.dirty)">Minimum Length should be 2</div>
+                    <div class="form-text text-danger" *ngIf="city.errors?.['pattern'] &&(city.touched || city.dirty)">should Start with an Alphabet</div>
+                    
+
+                  </div>
+                            
+                <div class="mb-3">
+                  <label for="Phone" class="form-label">Phone Number</label>
+                  <input class="form-control" type="tel" formControlName="Phone" id="Phone" name="phone">
+                  
+                  <div class="form-text text-danger" *ngIf="phone.errors?.['required'] &&(phone.touched || phone.dirty)">Mobile Number is required</div>
+                  <div class="form-text text-danger" *ngIf="phone.errors?.['pattern'] &&(phone.touched || phone.dirty)">Invalid Characters</div>
+                    <div class="form-text text-danger" *ngIf="!phone.errors?.['pattern'] && phone.errors?.['minlength'] &&(phone.touched || phone.dirty)">Minimum Length should be 10</div>
+                    <div class="form-text text-danger" *ngIf="!phone.errors?.['pattern'] && phone.errors?.['maxlength'] &&(phone.touched || phone.dirty)">Maximum Length should be 10</div>
+                  
+                </div>
+                
+                <div class="mb-3">
+                  <label for="Passwd" class="form-label">Password</label>
+                  <input class="form-control" type="password" formControlName="Passwd" id="Password" name="Passwd">
+                  
+                  <div class="form-text text-danger" *ngIf="password.errors?.['required'] &&(password.touched || password.dirty)">Mobile Number is required</div>
+                  <div class="form-text text-danger" *ngIf="password.errors?.['minlength'] &&(password.touched || password.dirty)">Minimum Length should be 8</div>
+                  <div class="form-text text-danger" *ngIf="password.errors?.['maxlength'] &&(password.touched || password.dirty)">Maximum Length should be 16</div>
+
+                </div>
+                <div class="mb-3">
+                  <label for="rPassword" class="form-label">Repeate Password</label>
+                  <input class="form-control" type="password" formControlName="rPassword" id="rPassword" name="rPassword">
+                  
+                  <div class="form-text text-danger" [ngStyle]="{'display':repPass}">Password not Matching</div>
+                  
+                </div>
+                <div class="modal-footer">
+                  <p class="text-center fs-3" [ngClass]="isAcountCreated ? 'text-success pb-1' : 'text-danger pb-1'">{{displayMsg}}</p>
+                  <button type="button" class="btn btn-primary" id="cancel" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-primary"[disabled]="register.invalid">Submit</button>
+                </div>
+              </form>
+              
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+
+  </nav>
+
+    
